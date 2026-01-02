@@ -25,20 +25,9 @@ jobs:
         env:
           CODE_PATH: ${{ github.workspace }}
 
-  TEST:
-    name: my test
-    runs-on: ubuntu-24.04
-    steps:
-      - run: |
-          echo "POUET"
-          echo ${{ github.ref_type == 'tag' }}
-      - run: |
-          echo "ITS a TAG"
-        if: ${{ github.ref_type == 'tag' }}
-
   publish:
     runs-on: ubuntu-24.04
-    needs: [linter, tests]
+    needs: [tests]
     if: ${{ github.ref_type == 'tag' }}
     env:
       GOX_ARCHITECTURES: amd64 386
