@@ -25,6 +25,13 @@ jobs:
         env:
           CODE_PATH: ${{ github.workspace }}
 
+  TEST:
+    name: my test
+    steps:
+      - run: |
+          echo "POUET"
+          echo ${{ github.ref_type == 'tag' }}
+
   publish:
     runs-on: ubuntu-24.04
     needs: [linter, tests]
